@@ -92,9 +92,9 @@ if ($_GET["action"] === "updateData") {
       // rename the image before saving to database
       $original_name = $_FILES["image"]["name"];
       $new_name = uniqid() . time() . "." . pathinfo($original_name, PATHINFO_EXTENSION);
-      move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $new_name);
+      move_uploaded_file($_FILES["image"]["tmp_name"], "uploads/" . $new_name);
       // remove the old image from uploads directory
-      unlink("images/" . $_POST["image_old"]);
+      unlink("uploads/" . $_POST["image_old"]);
     } else {
       $new_name = mysqli_real_escape_string($conn, $_POST["image_old"]);
     }
@@ -130,7 +130,7 @@ if ($_GET["action"] === "deleteData") {
 
   if (mysqli_query($conn, $sql)) {
     // remove the image
-    unlink("images/" . $delete_image);
+    unlink("uploads/" . $delete_image);
     echo json_encode([
       "statusCode" => 200,
       "message" => "Data deleted successfully 😀"
