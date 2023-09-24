@@ -92,7 +92,7 @@ if ($_GET["action"] === "updateData") {
       // rename the image before saving to database
       $original_name = $_FILES["image"]["name"];
       $new_name = uniqid() . time() . "." . pathinfo($original_name, PATHINFO_EXTENSION);
-      move_uploaded_file($_FILES["image"]["tmp_name"], "uploads/" . $new_name);
+      move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $new_name);
       // remove the old image from uploads directory
       unlink("uploads/" . $_POST["image_old"]);
     } else {
